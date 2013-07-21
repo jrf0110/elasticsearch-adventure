@@ -1,0 +1,7 @@
+ server {
+  server_name esadv.j0.hn;
+  listen 80;
+
+  root /apps/esadv/public;
+  index index.html index.htm;
+}
