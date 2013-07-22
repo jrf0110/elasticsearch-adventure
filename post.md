@@ -105,9 +105,9 @@ You surmise from the documentation that ES uses the following URL scheme for doc
 You also see from the [Index API](http://www.elasticsearch.org/guide/reference/api/index_/) that when a document is saved, ES will automatically create the index you're attempting to save into. So performing the following command:
 
 
-    curl -XPUT 'http://localhost:9200/twitter/tweet/1' -d '{'
+    curl -XPUT 'http://localhost:9200/twitter/tweet/1' -d '{
 
 <div id="editor-1" class="code-editor"></div>
 
 
-    '}'
+    }'
