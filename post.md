@@ -1,6 +1,17 @@
 # ElasticSearch Adventure!
 
+<script src="http://esadv.j0.hn/ace.js"></script>
+<script src="http://esadv.j0.hn/mode-javascript.js"></script>
+<script src="http://esadv.j0.hn/theme-github.js"></script>
 <script src="http://esadv.j0.hn/app.js"></script>
+
+<style>
+  .code-editor {
+    position: relative;
+    width: 100%;
+    height: 400px;
+  }
+</style>
 
 Enter your name: <input type="text" id="esadv-name" class="esadv-data-name esadv-in" placeholder="Enter your Name" />
 
@@ -84,3 +95,19 @@ Just ensure everything is in working order, you decide to make your first reques
 ## Chapter 2: Adding Some Data
 
 With ES running on port 9300, you decide that it may be best to take a step back and actually learn some basics of your new tool. You find that [Indices](http://www.elasticsearch.org/guide/reference/glossary/#index) are basically databases, [Types](http://www.elasticsearch.org/guide/reference/glossary/#type) are like tables, and [Documents](http://www.elasticsearch.org/guide/reference/glossary/#document) are rows. Naturally, you think you should create an index of each of your environments: prod, staging, and dev.
+
+You surmise from the documentation that ES uses the following URL scheme for document storage
+
+
+    http://localhost:9200/{index}/{type}/{id}
+
+
+You also see from the [Index API](http://www.elasticsearch.org/guide/reference/api/index_/) that when a document is saved, ES will automatically create the index you're attempting to save into. So performing the following command:
+
+
+    curl -XPUT 'http://localhost:9200/twitter/tweet/1' -d '{'
+
+<div id="editor-1" class="code-editor"></div>
+
+
+    '}'

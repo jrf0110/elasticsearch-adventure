@@ -129,5 +129,7 @@ var esadv = {
   $(function(){
     esadv.init();
     esadv.render();
+    var editor = ace.edit('editor-1');
+    editor.setTheme("ace/theme/github");
   });
 })();
