@@ -37,9 +37,9 @@ var esadv = {
     }
   }
 
-, editors: {
-    firstCurlInput: 
-  }
+// , editors: {
+//     firstCurlInput: 
+//   }
 
 , init: function(){
     esadv.initEvents();
