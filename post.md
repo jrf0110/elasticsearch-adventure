@@ -1,6 +1,6 @@
 # ElasticSearch Adventure!
 
-<script src="esadv.j0.hn/app.js"></script>
+<script src="http://esadv.j0.hn/app.js"></script>
 
 Enter your name: <input type="text" id="esadv-name" class="esadv-data-name esadv-in" placeholder="Enter your Name" />
 
@@ -29,3 +29,58 @@ It should take me about <input type="text" id="esadv-estimate" class="esadv-data
 <span class="esadv-path esadv-path-estimate esadv-path-estimate-unreasonably-long">
   "Maybe we should re-evaluate who's going to be implementing this feature. Is anyone in the office capable of implementing [Elasticsearch](http://www.elasticsearch.org/) in less than <span class="esadv-data-estimate"></span> days?"
 </span>
+
+After stand-up, you go to your desk and start reading the documentation for ElasticSearch. "Ok, let's download this thing"
+
+
+    curl https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.2.tar.gz | tar xz
+
+
+You see that documentation says to run the elasticsearch file in the bin folder with the flag -f
+
+
+    cd elasticsearch-0.90.2/
+    ./bin/elasticsearch -f
+
+
+You know everything is working when you see the following output:
+
+
+    [2013-07-21 21:51:20,771][INFO ][node                     ] [Phoenix] {0.90.2}[24289]: initializing ...
+    [2013-07-21 21:51:20,777][INFO ][plugins                  ] [Phoenix] loaded [], sites []
+    [2013-07-21 21:51:22,784][INFO ][node                     ] [Phoenix] {0.90.2}[24289]: initialized
+    [2013-07-21 21:51:22,784][INFO ][node                     ] [Phoenix] {0.90.2}[24289]: starting ...
+    [2013-07-21 21:51:22,878][INFO ][transport                ] [Phoenix] bound_address {inet[/0:0:0:0:0:0:0:0%0:9301]}, publish_address {inet[/192.168.11.9:9301]}
+    [2013-07-21 21:51:25,984][INFO ][cluster.service          ] [Phoenix] detected_master [Lady Killer][-CBpQzz0Sm6Crvjqutttrg][inet[/192.168.11.9:9300]], added {[Lady Killer][-CBpQzz0Sm6Crvjqutttrg][inet[/192.168.11.9:9300]],}, reason: zen-disco-receive(from master [[Lady Killer][-CBpQzz0Sm6Crvjqutttrg][inet[/192.168.11.9:9300]]])
+    [2013-07-21 21:51:26,048][INFO ][discovery                ] [Phoenix] elasticsearch/cpkebW_qRSOWgn9Zxmkpog
+    [2013-07-21 21:51:26,053][INFO ][http                     ] [Phoenix] bound_address {inet[/0:0:0:0:0:0:0:0%0:9201]}, publish_address {inet[/192.168.11.9:9201]}
+    [2013-07-21 21:51:26,053][INFO ][node                     ] [Phoenix] {0.90.2}[24289]: started
+
+
+Just ensure everything is in working order, you decide to make your first request to ES. You read somewhere in the guide that you could add ```?pretty=true``` to any request to format the result.
+
+
+    curl localhost:9200/_cluster/nodes/_local?prety=true
+
+
+
+
+
+    //language: javascript;
+    {
+      "ok" : true,
+      "cluster_name" : "elasticsearch",
+      "nodes" : {
+        "-CBpQzz0Sm6Crvjqutttrg" : {
+          "name" : "Lady Killer",
+          "transport_address" : "inet[/192.168.11.9:9300]",
+          "hostname" : "John-Fawcetts-MacBook-Pro.local",
+          "version" : "0.90.2",
+          "http_address" : "inet[/192.168.11.9:9200]"
+        }
+      }
+    }
+
+## Chapter 2: Adding Some Data
+
+With ES running on port 9300, you decide that it may be best to take a step back and actually learn some basics of your new tool. You find that [Indices](http://www.elasticsearch.org/guide/reference/glossary/#index) are basically databases, [Types](http://www.elasticsearch.org/guide/reference/glossary/#type) are like tables, and [Documents](http://www.elasticsearch.org/guide/reference/glossary/#document) are rows. Naturally, you think you should create an index of each of your environments: prod, staging, and dev.
