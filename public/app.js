@@ -135,7 +135,7 @@ var esadv = {
     esadv.render();
     var editor = ace.edit('editor-1');
     editor.setTheme("ace/theme/github");
-    editor.setTabSize(2);
+    editor.getSession().setTabSize(2);
     editor.getSession().setUseSoftTabs(true);
     var JavaScriptMode = require("ace/mode/javascript").Mode;
     editor.getSession().setMode(new JavaScriptMode());
